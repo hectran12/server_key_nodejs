@@ -562,6 +562,9 @@ function startServer (con) {
                 res.writeHead(200, {
                     'Content-Type': 'Application/json'
                 });
+                var tachNgayEnd = data.hsd.split('-');
+                var dateEnd = new Date(parseInt(tachNgayEnd[0]), parseInt(tachNgayEnd[1])-1, parseInt(tachNgayEnd[2])+1);
+                var today = new Date();
                 res.end(exportJson({
                     code: 1,
                     Message: 'Key co ton tai trong he thong',
@@ -570,7 +573,8 @@ function startServer (con) {
                         'key': data.key_name,
                         'full_name': data.fullname_key,
                         'create_date': data.ngaytao,
-                        'exp_date': data.hsd
+                        'exp_date': data.hsd,
+                        'activity': today < dateEnd
                     }
                 }));
             }).catch(function (err) {
