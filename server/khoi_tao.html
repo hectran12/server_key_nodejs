@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Check key</h1>
+        <hr>
+        <input type="text" id="key_check" name="keycancheck" placeholder="Nhập key cần check"><br>
+        <button onclick="check_key()">Check</button>
+        <hr>
+        <h1>Khởi tạo</h1>
+        <hr>
+        <input type="text" id="fn_key" name="fullname_key" placeholder="Tên chủ key"><br>
+        <input type="text" id="n_key" name="key_name" placeholder="key"><br>
+        Ngày hết hạn: <input type="date" id="date_hethan" name="datexp"><br>
+        <button type="submit" onclick="check()"">Tạo</button><br>
+        <h3 style="color: blue;">STATUS_CREATE_KEY_NO_CHANGE_PLS</h3>
+        <hr>
+        <h1>Quản lý key</h1><br>
+        <h3 style="color: blue;">STATUS_PANEL_KEY</h3>
+        TRONGHOA_HEXZZ2008_PANEL_KEY____THANG_VIET_QUA_LUOI_DE_XU_LY_CASE_NAY_AHAHAHAHA
+    </center>
+
+    <script>
+        let fullname_key = document.getElementById("fn_key");
+        let key_name = document.getElementById("n_key");
+        let date_exp = document.getElementById("date_hethan");
+        let checkkey = document.getElementById("key_check");
+        function check () {
+            if (fullname_key.value < 50 && key_name.value < 25) {
+                alert('Tên chủ key phải nhỏ hơn 50 kí tự, hoặc tên key phải nhỏ hơn 25 kí tự');
+            } else if(fullname_key.value == '' || key_name.value == '') {
+                alert('Một trong 2 trường hợp không được để trống!');
+            } else {
+                window.location = '/create_key?fullname_key=' + fullname_key.value + '&key=' + key_name.value + '&exp=' + date_exp.value;
+            }
+        }
+
+        function check_key() {
+            if(checkkey.value == '') {
+                alert('Vui lòng nhập key để check!');
+            } else {
+                window.location = '/check_key?key=' + checkkey.value;
+            }
+        }
+        function removeKey (id) {
+            window.location = '/remove_key?id=' + id;
+        }
+    </script>
+</body>
+</html>
